@@ -1,43 +1,42 @@
 <template>
   <div id="app">
     <v-main>
+      <Editor
+        mode="preview"
+        ref="editor"
+        hint="Hint"
+        :outline="false"
+        :render-config="renderConfig"
+        v-model="text"
+
+        rows="12"
+      />
       <router-view/>
     </v-main>
   </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
-
 <script>
+import { Editor } from "vuetify-markdown-editor";
 export default {
   name: 'App',
 
   components: {
+    Editor
   },
 
   data: () => ({
-    //
+    // for editor
+    text: "",
+    renderConfig: {
+      // Mermaid config
+      mermaid: {
+        theme: "dark"
+      }
+    }  
   }),
+  mounted(){
+    this.$refs.editor.$props;
+  },
 };
 </script>
